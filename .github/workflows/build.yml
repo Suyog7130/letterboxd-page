@@ -1,0 +1,18 @@
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - main # change to your desired branch name
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v2
+      - run: npm run build
+      - uses: actions/checkout@v2
+        with:
+          BRANCH: main
+          FOLDER: dist # your output folder name
